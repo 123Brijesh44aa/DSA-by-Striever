@@ -35,6 +35,22 @@ public class PrintingSubsequence {
         printingSubsequenceSumK(index+1, arr, arrayList, initialSum, targetSum);
     }
 
+    void printNto1(int n){
+        if (n == 0){
+            return;
+        }
+        System.out.println(n);
+        printNto1(n-1);
+    }
+
+    void print1toN(int n){
+        if (n == 0){
+            return;
+        }
+        print1toN(n-1);
+        System.out.println(n);
+    }
+
     public static void main(String[] args) {
         PrintingSubsequence subsequence = new PrintingSubsequence();
         int[] arr = {1,2,3,4};
@@ -44,5 +60,10 @@ public class PrintingSubsequence {
         int[] arr2 = {2,4,6};
         ArrayList<Integer> arrayList2 = new ArrayList<>();
         subsequence.printingSubsequenceSumK(0, arr2, arrayList2, 0, 6);
+
+        System.out.println("\n\n");
+        subsequence.printNto1(10);
+        System.out.println();
+        subsequence.print1toN(10);
     }
 }
