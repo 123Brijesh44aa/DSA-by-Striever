@@ -9,8 +9,18 @@ public class Factorial {
         return n * factorial(n-1);
     }
 
+    // using for loop
+    static int factorial2(int n){
+        int p = 1;
+        for (int i = 1; i <= n; i++) {
+            p *= i;
+        }
+        return p;
+    }
+
     public static void main(String[] args) {
         Factorial fact = new Factorial();
-        System.out.println(fact.factorial(10));
+        System.out.println(fact.factorial(5));
+        System.out.println(factorial2(5));
     }
 }
