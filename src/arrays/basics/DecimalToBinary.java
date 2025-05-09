@@ -26,7 +26,9 @@ public class DecimalToBinary {
     }
 
     public static void main(String[] args) {
-        System.out.println(decimalToBinary(170));
-        System.out.println(binaryToDecimal("10910"));
+        int num = 170;
+        System.out.println(decimalToBinary(num));
+        String binary = "101001100";
+        System.out.println(binaryToDecimal(binary));
     }
 }
