@@ -2,6 +2,7 @@ package arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Intro {
     public static void main(String[] args) {
@@ -28,5 +29,25 @@ public class Intro {
         System.out.println(Arrays.toString(arr));
 
         arrayList.remove(2);
+
+
+        // Question: input an array and print a sum of its elements
+        int[] nums = new int[10];
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Taking input");
+        for (int i=0; i<5; i++){
+            nums[i] = scanner.nextInt() * 10;
+        }
+        System.out.println("Printing the Array");
+        for (int i=0; i<5; i++){
+            System.out.print(nums[i]+", ");
+        }
+        int sum = 0;
+        System.out.println("\nSum of array elements");
+        for (int i=0; i<5; i++){
+            sum += nums[i];
+        }
+        System.out.println("Sum : "+ sum);
+
     }
 }
