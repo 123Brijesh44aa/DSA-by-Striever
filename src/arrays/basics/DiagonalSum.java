@@ -2,7 +2,7 @@ package arrays.basics;
 
 public class DiagonalSum {
 
-    static int diagonalSum(int[][]arr,int rows, int cols){
+    static int diagonalSum(int[][]arr) {
         int sum = 0;
         for (int i=0; i<arr.length; i++){
             sum = sum + arr[i][i];
@@ -11,16 +11,14 @@ public class DiagonalSum {
     }
 
     public static void main(String[] args) {
-        int rows = 4;
-        int cols = 4;
-        int[][]arr = new int[rows][cols];
+        int[][]arr;
         arr = new int[][]{
-                {1, 2, 3, 4},
-                {4, 6, 7, 8},
+                {1, 2, 3, 4,},
+                {4, 6, 7, 9},
                 {9, 10, 11, 12},
                 {13, 14, 15, 16},
         };
-        int sum = diagonalSum(arr,rows,cols);
+        int sum = diagonalSum(arr);
         System.out.println(sum);
     }
 }
