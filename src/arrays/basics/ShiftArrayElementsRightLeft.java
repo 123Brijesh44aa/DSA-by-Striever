@@ -59,8 +59,25 @@ public class ShiftArrayElementsRightLeft {
         return arr;
     }
 
+
+    // Better approach
+    static int[] rotate(int[]arr, int k){
+        int n = arr.length;
+        int[]temp = new int[n];
+        for (int index=0; index<n; index++){
+            temp[(index+k)%n] = arr[index];
+        }
+        System.arraycopy(temp, 0, arr, 0, n);
+        return arr;
+    }
+
     public static void main(String[] args) {
         int[]arr = {10,20,30,40,50,60};
         System.out.println(Arrays.toString(rightShiftByN(arr,-98)));
+
+        int[]arr2 = {1,2,3,4,5,6};
+        int k = 3;
+        int[] rotatedArr = rotate(arr2,k);
+        System.out.println(Arrays.toString(rotatedArr));
     }
 }
