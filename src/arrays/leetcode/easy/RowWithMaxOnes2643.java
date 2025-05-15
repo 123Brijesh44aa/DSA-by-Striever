@@ -2,7 +2,7 @@ package arrays.leetcode.easy;
 
 import java.util.Arrays;
 
-public class RowWithMaxOnes {
+public class RowWithMaxOnes2643 {
 
     static int[] rowAndMaximumOnes(int[][]arr){
         int n = arr.length;
