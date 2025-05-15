@@ -4,44 +4,56 @@ import java.util.Arrays;
 
 public class TransposeMatrix {
 
-    static int[][] transpose(int[][]arr){
-        int rows = arr.length;
-        int cols = arr[0].length;
-        int[][]transposedMatrix = new int[rows][cols];
-        for (int i=0; i<rows; i++){
-            for (int j=0; j<cols; j++){
-                transposedMatrix[i][j] = arr[j][i];
-            }
-        }
-        return transposedMatrix;
-    }
 
-    // another method: by swaping row,column to column, row,
-    // but this method works for only square matrices.
-    // e.g., 3x3, 2x2, 5x5
-    // if you try to give it non-square matrix, you will end up getting IndexOutOfBoundException.
-    static int[][] transpose2(int[][]arr){
-        int rows = arr.length;
-        int cols = arr[0].length;
-        for (int i=0; i<rows; i++){
-            for (int j=i; j<cols; j++){
+    // Transpose method: works only for square matrices
+    // this is an in place approach
+    static void transpose_square_matrix(int[][]arr){
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < arr[i].length; j++) {
                 int temp = arr[i][j];
                 arr[i][j] = arr[j][i];
                 arr[j][i] = temp;
             }
         }
-        return arr;
+    }
+
+
+    // Works for both Square Matrix and Rectangular Matrices
+    static int[][] transpose(int[][]arr){
+        int m = arr.length;   // eg . 4
+        int n = arr[0].length;  // eg. 3
+        int[][]transposedMatrix;
+        if (m == n) {
+            transposedMatrix = new int[m][n];
+            for (int i=0; i<m; i++){
+                for (int j=0; j<n; j++){
+                    transposedMatrix[i][j] = arr[j][i];
+                }
+            }
+            return transposedMatrix;
+        }
+        else {
+            // before transpose matrix will be of mxn
+            // after transpose matrix will be of nxm
+            transposedMatrix = new int[n][m];
+            for (int i=0; i<m; i++){
+                for (int j=0; j<n; j++){
+                    transposedMatrix[j][i] = arr[i][j];
+                }
+            }
+            return  transposedMatrix;
+        }
     }
 
 
     public static void main(String[] args) {
         int[][]arr = {
-                {1,2,3,44,32,90},
-                {4,5,6,49,55,66},
-                {7,8,9,77,88,99},
-                {32,98,43,53,23,53},
-                {38,58,20,83,52,39},
-                {59,89,33,50,19,15}
+                {1,2,3,44},
+                {4,5,6,49},
+                {7,8,9,77},
+                {32,98,43,53},
+                {10,20,30,40}
         };
         System.out.println("Original Matrix");
         for (int i=0; i<arr.length; i++){
@@ -52,7 +64,7 @@ public class TransposeMatrix {
             System.out.println(row);
         }
         System.out.println("Transposed Matrix");
-        arr = transpose2(arr);
+        arr = transpose(arr);
         for (int i=0; i<arr.length; i++){
             StringBuilder row = new StringBuilder();
             for (int j=0; j<arr[0].length; j++){
