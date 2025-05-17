@@ -1,6 +1,6 @@
 package arrays.leetcode.medium;
 
-public class PeakIndexInAMountainArray {
+public class PeakIndexInAMountainArray852 {
 
     static int peakIndexMountain(int[]arr){
         int n = arr.length;
