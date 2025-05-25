@@ -1,19 +1,7 @@
 package linkedlist;
 
 
-class Node {
-    int data;
-    Node next;
-
-    public Node(){
-        this.next = null;
-    }
-
-    public Node(int data){
-        this.data = data;
-        this.next = null;
-    }
-}
+import linkedlist.singlyNode.Node;
 
 public class SinglyLinkedList {
     private Node head;
@@ -146,6 +134,13 @@ public class SinglyLinkedList {
         }
     }
 
+    // Delete Entire Singly Linked list
+    void deleteEntireLL(){
+        head = null;
+        tail = null;
+        length = 0;
+    }
+
     void printLL(){
         Node temp = head;
         while (temp != null){
@@ -177,7 +172,11 @@ public class SinglyLinkedList {
         list.deleteAtEnd();
         list.deleteAt(4);
         list.printLL();
+        list.deleteEntireLL();
         System.out.println("Linked list  length is : "+list.getLength());
+        list.printLL();
+
+
 
 
     }
