@@ -41,6 +41,7 @@ public class SinglyLinkedList {
         length = 0;
     }
 
+    // Inserting Node at beginning, end, and middle
     void insertAtBeginning(int data){
         Node newNode = new Node(data);
         if (head == null){
@@ -53,9 +54,10 @@ public class SinglyLinkedList {
     }
     void insertAtEnd(int data){
         Node newNode = new Node(data);
-        if (tail == null){
+        if (head == null){
             head = tail = newNode;
         }else {
+            newNode.next = null;
             tail.next = newNode;
             tail = newNode;
         }
@@ -63,34 +65,85 @@ public class SinglyLinkedList {
     }
     void insertAt(int location, int data){
         Node newNode = new Node(data);
-        if (location < 1){
+        if (location < 0){
             try {
-                throw new Exception("can not insert, please enter a valid location");
+                throw new IndexOutOfBoundsException("Cannot insert, please enter a valid location between 1 and " + (length));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        if (location > length+1){
-            throw new IndexOutOfBoundsException();
-        }
-        if (location == 1){
-            insertAtBeginning(data);
-            return;
-        }
-        if (location == length){
-            insertAtEnd(data);
-            return;
-        }
-        Node prev = null;
-        Node current = head;
-        for (int i=1; i<location; i++){
-            prev = current;
-            current = current.next;
-        }
-        prev.next = newNode;
-        newNode.next = current;
 
-        length++;
+        else if (location == 0){
+            insertAtBeginning(data);
+        }
+        else if (location >= length){
+            insertAtEnd(data);
+        }
+        else {
+            Node current = head;
+            for (int i = 0; i < location - 1; i++) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+            length++;
+        }
+    }
+
+    // Deleting Node at the beginning, end, and middle
+    void deleteAtBeginning(){
+        if (head == null){
+            System.out.println("Can't delete node, Linked list is empty");
+        }else {
+            head = head.next;
+            length--;
+            if (length == 0){
+                tail = null;
+            }
+        }
+
+    }
+    void deleteAtEnd(){
+        if (head == null){ // case:empty list
+            System.out.println("Can't delete node, Linked list is empty");
+        }
+        else if (head == tail){ // case:single node list
+            head = null;
+            tail = null;
+            length--;
+        }
+        else { // case: multi-node list
+            Node prev = head;
+            for (int i=0; i<length-2; i++){ // find the second last node
+                prev = prev.next;
+            }
+            prev.next = null; // Remove the last node
+            tail = prev; // update tail reference
+            length--;
+        }
+    }
+    void deleteAt(int location){
+        if (location < 0){
+            try {
+                throw new IndexOutOfBoundsException("Cannot insert, please enter a valid location between 1 and " + (length));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else if (location == 0){
+            deleteAtBeginning();
+        }
+        else if (location >= length){
+            deleteAtEnd();
+        }
+        else {
+            Node prev = head;
+            for (int i = 0; i < location - 1; i++) {
+                prev = prev.next;
+            }
+            prev.next = prev.next.next;
+            length--;
+        }
     }
 
     void printLL(){
@@ -112,12 +165,20 @@ public class SinglyLinkedList {
         list.insertAtBeginning(50);
         list.insertAtEnd(100);
         list.insertAtEnd(200);
-        int location = 1;
+        int location = 0;
         int data = 99;
         list.insertAt(location,data);
-//        list.insertAt(9,111);
+        list.insertAt(8,111);
+        list.insertAt(9,444);
         list.printLL();
         System.out.println("Linked list  length is : "+list.getLength());
+        System.out.println("\nAfter Deletion\n");
+        list.deleteAtBeginning();
+        list.deleteAtEnd();
+        list.deleteAt(4);
+        list.printLL();
+        System.out.println("Linked list  length is : "+list.getLength());
+
 
     }
 }
