@@ -2,7 +2,7 @@ package arrays.leetcode.medium;
 
 import java.util.Arrays;
 
-public class RotateArray {
+public class RotateArrayRightSideByK {
 
     static int[] rotate(int[]arr, int k){
         int n = arr.length;
@@ -16,7 +16,7 @@ public class RotateArray {
 
     public static void main(String[] args) {
         int[]arr = {1,2,3,4,5,6};
-        int k = 3;
+        int k = 1;
         System.out.println(Arrays.toString(rotate(arr,k)));
     }
 }
