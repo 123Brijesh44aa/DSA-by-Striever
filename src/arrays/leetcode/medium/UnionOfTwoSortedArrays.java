@@ -11,11 +11,11 @@ public class UnionOfTwoSortedArrays {
     private static int[] getUnion(int[]a , int[]b){
         int n = a.length;
         int m = b.length;
-        List<Integer> union = new ArrayList<>();
+        ArrayList<Integer> union = new ArrayList<>();
         int i=0;
         int j=0;
         while (i < n && j < m){
-            // 1. edge case: if the same elements in array a
+            // 1. edge case: if the same elements in an array 'a'
             while ( (i+1) < n && a[i] == a[i+1]){
                 i++; // skip the element and move it by 1
             }
