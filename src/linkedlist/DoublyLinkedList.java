@@ -93,6 +93,17 @@ public class DoublyLinkedList {
         }
     }
 
+    void deleteDLL(){
+        Node temp = head;
+        for (int i=0; i<length; i++){
+            temp.prev = null;
+            temp = temp.next;
+        }
+        head = null;
+        tail = null;
+        System.out.println("The DLL has been deleted!");
+    }
+
     void printReverse(){
         Node temp = tail;
         while (temp != null){
@@ -120,6 +131,7 @@ public class DoublyLinkedList {
         list.insert(0,100);
         list.insert(9,1);
         list.insert(2,111);
+        list.deleteDLL();
         list.printDLL();
         System.out.println("Length of Doubly linked list is : "+list.getLength());
         list.delete(list.getLength());
@@ -130,5 +142,6 @@ public class DoublyLinkedList {
         System.out.println("Length of Doubly linked list is : "+list.getLength());
 //        System.out.print("Reverse Printing : ");
 //        list.printReverse();
+
     }
 }
