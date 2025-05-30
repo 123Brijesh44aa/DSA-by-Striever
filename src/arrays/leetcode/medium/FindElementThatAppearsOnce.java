@@ -1,5 +1,7 @@
 package arrays.leetcode.medium;
 
+import java.util.HashMap;
+
 public class FindElementThatAppearsOnce {
 
     // brute force approach
@@ -21,9 +23,35 @@ public class FindElementThatAppearsOnce {
     }
 
     // better approach
+    private static int findElement_better(int[]arr){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int num: arr){
+            map.put(num, map.getOrDefault(num,0)+1);
+        }
+        for (int key: map.keySet()){
+            if (map.get(key) == 1){
+                return map.get(map.get(key));
+            }
+        }
+        return -1;
+    }
+
+    // optimal solution
+    // using xor
+    private static int findElement_optimal(int[]arr){
+        int result = 0;
+        for (int num: arr){
+            result ^= num;
+        }
+        return result;
+    }
 
     public static void main(String[] args) {
         int[]arr = {1,1,2,3,3,4,4};
         System.out.println(findElement(arr));
+
+        System.out.println(findElement_better(arr));
+
+        System.out.println(findElement_optimal(arr));
     }
 }
