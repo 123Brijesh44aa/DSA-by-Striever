@@ -11,6 +11,10 @@ public class LinkedList {
         this.length = 0;
     }
 
+    public int getLength(){
+        return this.length;
+    }
+
     public void insert(int location, int data){
         if (location < 0){
             System.out.println("Invalid Location Parameter");

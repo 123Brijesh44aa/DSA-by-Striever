@@ -30,7 +30,7 @@ public class FindElementThatAppearsOnce {
         }
         for (int key: map.keySet()){
             if (map.get(key) == 1){
-                return map.get(map.get(key));
+                return key;
             }
         }
         return -1;
