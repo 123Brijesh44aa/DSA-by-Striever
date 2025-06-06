@@ -3,21 +3,20 @@ import linkedlist.leetcode.common.Node;
 
 public class Add1ToANumberRepresentedByLinkedList {
 
-    private static void reverseLinkedList(LinkedList linkedList){
+    private static void reverseLinkedList(LinkedList linkedList) {
         Node next = null;
         Node prev = null;
         Node temp = linkedList.head;
         while (temp != null) {
             next = temp.next;
             temp.next = prev;
-            prev = temp; 
+            prev = temp;
             temp = next;
         }
         linkedList.head = prev;
     }
 
-
-    private static LinkedList add_1_to_a_number_represented_by_linkedList(LinkedList linkedList){
+    private static LinkedList add_1_to_a_number_represented_by_linkedList(LinkedList linkedList) {
         reverseLinkedList(linkedList);
         Node temp = linkedList.head;
         int carry = 1;
@@ -26,12 +25,13 @@ public class Add1ToANumberRepresentedByLinkedList {
             if (temp.data < 10) {
                 carry = 0;
                 break;
-            } else { //temp.data == 10
+            } else { // temp.data == 10
                 temp.data = 0;
                 carry = 1;
             }
             temp = temp.next;
         }
+
         if (carry == 1) {
             Node newNode = new Node(1);
             reverseLinkedList(linkedList);
@@ -42,7 +42,6 @@ public class Add1ToANumberRepresentedByLinkedList {
         reverseLinkedList(linkedList);
         return linkedList;
     }
-
 
     // Better approach using Recursion (Backtracking)
     private static int helper(Node temp) {
@@ -67,8 +66,6 @@ public class Add1ToANumberRepresentedByLinkedList {
         }
         return linkedList;
     }
-    
-
 
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
