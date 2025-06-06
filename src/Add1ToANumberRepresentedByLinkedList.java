@@ -10,7 +10,7 @@ public class Add1ToANumberRepresentedByLinkedList {
         while (temp != null) {
             next = temp.next;
             temp.next = prev;
-            prev = temp;
+            prev = temp; 
             temp = next;
         }
         linkedList.head = prev;
@@ -26,7 +26,7 @@ public class Add1ToANumberRepresentedByLinkedList {
             if (temp.data < 10) {
                 carry = 0;
                 break;
-            } else{ //temp.data == 10
+            } else { //temp.data == 10
                 temp.data = 0;
                 carry = 1;
             }
@@ -42,6 +42,34 @@ public class Add1ToANumberRepresentedByLinkedList {
         reverseLinkedList(linkedList);
         return linkedList;
     }
+
+
+    // Better approach using Recursion (Backtracking)
+    private static int helper(Node temp) {
+        if (temp == null) {
+            return 1;
+        }
+        int carry = helper(temp.next);
+        temp.data = temp.data + carry;
+        if (temp.data < 10) {
+            return 0;
+        }
+        temp.data = 0;
+        return 1;
+    }
+
+    private static LinkedList add_1_to_a_num_represented_by_ll_backtracking(LinkedList linkedList) {
+        int carry = helper(linkedList.head);
+        if (carry == 1) {
+            Node newNode = new Node(1);
+            newNode.next = linkedList.head;
+            linkedList.head = newNode;
+        }
+        return linkedList;
+    }
+    
+
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         list.insert(0, 1);
@@ -65,5 +93,14 @@ public class Add1ToANumberRepresentedByLinkedList {
         System.out.println("list2 after adding 1");
         list2 = add_1_to_a_number_represented_by_linkedList(list2);
         list2.printList();
+
+        // using backtracking
+        LinkedList linkedList = new LinkedList();
+        linkedList.insert(0, 1);
+        linkedList.insert(1, 5);
+        linkedList.insert(2, 9);
+        System.out.println("linked list affter adding 1");
+        linkedList = add_1_to_a_num_represented_by_ll_backtracking(linkedList);
+        linkedList.printList();
     }
 }
