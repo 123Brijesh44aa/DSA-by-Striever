@@ -9,17 +9,12 @@ public class InfixToPostfix {
     }
 
     private static int priority(char operator) {
-        switch (operator) {
-            case '+':
-            case '-':
-                return 1;
-            case '*':
-            case '/':
-                return 2;
-            case '^':
-                return 3;
-        }
-        return -1;
+        return switch (operator) {
+            case '+', '-' -> 1;
+            case '*', '/' -> 2;
+            case '^' -> 3;
+            default -> -1;
+        };
     }
 
     private static boolean isRightAssociative(char ch) {
@@ -28,17 +23,17 @@ public class InfixToPostfix {
 
     private static String infixToPostfix(String string) {
         Stack<Character> stack = new Stack<>();
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         int i = 0;
         while (i < string.length()) {
             Character ch = string.charAt(i);
             if (isOperand(ch)) {
-                ans = ans + ch;
+                ans.append(ch);
             } else if (ch == '(') {
                 stack.push(ch);
             } else if (ch == ')') {
                 while (!stack.isEmpty() && stack.peek() != '(') {
-                    ans = ans + stack.pop();
+                    ans.append(stack.pop());
                 }
                 if (!stack.isEmpty() && stack.peek() == '(') {
                     stack.pop();
@@ -47,16 +42,16 @@ public class InfixToPostfix {
                 while (!stack.isEmpty() && stack.peek() != '(' &&
                         (priority(ch) < priority(stack.peek()) ||
                                 (priority(ch) == priority(stack.peek()) && !isRightAssociative(ch)))) {
-                    ans = ans + stack.pop();
+                    ans.append(stack.pop());
                 }
                 stack.push(ch);
             }
             i++;
         }
         while (!stack.isEmpty()) {
-            ans = ans + stack.pop();
+            ans.append(stack.pop());
         }
-        return ans;
+        return ans.toString();
     }
 
     public static void main(String[] args) {
