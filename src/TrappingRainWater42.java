@@ -1,6 +1,6 @@
 public class TrappingRainWater42 {
 
-    // Approach 1 ( 3 loop solution )
+    // Approach 1 (3 loop solutions)
     private static int trapWater(int[] height){
         int n = height.length;
         int totalWater = 0;
@@ -28,7 +28,7 @@ public class TrappingRainWater42 {
         return totalWater;
     }
 
-    // Approach 1 Optimized ( 2 loop solution )
+    // Approach 1 Optimized (2 loop solution)
     private static int trapWater_optimized(int[] height){
         int n = height.length;
         int totalWater = 0;
@@ -58,7 +58,7 @@ public class TrappingRainWater42 {
         return totalWater;
     }
 
-    // optimal solution using two pointer
+    // optimal solution using two pointers
     private static int trapWater_optimal(int[] height){
         int n = height.length;
         int left = 0;
