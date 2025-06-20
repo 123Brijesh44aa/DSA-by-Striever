@@ -1,4 +1,4 @@
-package recursions;
+package dp;
 
 public class MathematicalTableOfN {
 
