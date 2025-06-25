@@ -34,8 +34,8 @@ public class TwoSum1 {
             return new int[] {};
         }
         int[] index = new int[2];
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 if (i == j) {
                     continue;
                 }
@@ -50,36 +50,36 @@ public class TwoSum1 {
 
     }
 
-
-    // Better approach using Hashing 
-    private static boolean twoSum_better(int[]arr, int target){
+    // Better approach using Hashing
+    private static boolean twoSum_better(int[] arr, int target) {
         int n = arr.length;
-        if (n==0 || n==1) {
+        if (n == 0 || n == 1) {
             return false;
         }
-        Map<Integer,Integer> map = new HashMap<>();
-        for(int i=0; i<n; i++){
-            if (!map.containsKey(target-arr[i])) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (!map.containsKey(target - arr[i])) {
                 map.put(arr[i], i);
-            } else{
+            } else {
                 return true;
             }
         }
         return false;
     }
-    private static int[] twoSum_better_(int[]arr, int target){
+
+    private static int[] twoSum_better_(int[] arr, int target) {
         int n = arr.length;
-        if (n==0 || n==1) {
-            return new int[]{};
+        if (n == 0 || n == 1) {
+            return new int[] {};
         }
-        Map<Integer,Integer> map = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         int[] res = new int[2];
-        for(int i=0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             if (!map.containsKey(target - arr[i])) {
                 map.put(arr[i], i);
-            } else{
+            } else {
                 res[0] = i;
-                res[1] = map.get(target-arr[i]);
+                res[1] = map.get(target - arr[i]);
             }
         }
         return res;
@@ -87,29 +87,26 @@ public class TwoSum1 {
 
     // optimal approach
     // works only for type 1
-    private static boolean twoSum_optimal_type1(int[]arr, int target){
+    private static boolean twoSum_optimal_type1(int[] arr, int target) {
         int n = arr.length;
-        if (n==0 || n==1) {
+        if (n == 0 || n == 1) {
             return false;
         }
         Arrays.sort(arr);
         int left = 0;
-        int right = n-1;
+        int right = n - 1;
         while (left < right) {
             int sum = arr[left] + arr[right];
             if (sum == target) {
                 return true;
-            }
-            else if (sum < target) {
-                left++; 
-            }
-            else {
+            } else if (sum < target) {
+                left++;
+            } else {
                 right--;
             }
         }
         return false;
     }
-    
 
     public static void main(String[] args) {
         int[] arr = { 2, 6, 5, 8, 11 };
@@ -118,7 +115,7 @@ public class TwoSum1 {
         System.out.print("index of the elements whose sum is = target are : ");
         System.out.println(Arrays.toString(twoSum_(arr, target)));
 
-        // using hashing 
+        // using hashing
         System.out.println(twoSum_better(arr, target));
         System.out.println(Arrays.toString(twoSum_better_(arr, target)));
 
