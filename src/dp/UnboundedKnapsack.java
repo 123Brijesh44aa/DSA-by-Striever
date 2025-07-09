@@ -108,3 +108,6 @@ public class UnboundedKnapsack {
         System.out.println("max profit (bottom up) is : " + maxProfit_optimal(wt, val, w));
     }
 }
+
+
+
