@@ -1,6 +1,6 @@
 package dp;
 
-public class CoinChange {
+public class CoinChange518 {
 
     // problem statement
     // we're given a coin[] array and a sum variable

@@ -2,7 +2,7 @@ package dp;
 
 import java.util.Arrays;
 
-public class CoinChangeMinNoOfCoins {
+public class CoinChangeMinNoOfCoins322 {
 
     // problem Description :
     // We're given a coin array and a sum variable.
