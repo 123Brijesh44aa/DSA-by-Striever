@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+
 /*
  * Matrix Chain Multiplication Problem Statement
  */
@@ -90,6 +92,7 @@ package dp;
 
 public class MatrixChainMultiplication {
 
+    // Recursive
     private static int mcm(int[] arr, int i, int j) {
         if (i >= j) {
             return 0;
@@ -104,11 +107,39 @@ public class MatrixChainMultiplication {
         return minCost;
     }
 
+    // Memoization
+    private static int helper(int[] arr, int i, int j, int[][] dp) {
+        if (i >= j) {
+            return 0;
+        }
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+        int minCost = Integer.MAX_VALUE;
+        for (int k = i; k <= j - 1; k++) {
+            int tempAns = helper(arr, i, k, dp) + helper(arr, k + 1, j, dp) + (arr[i - 1] * arr[k] * arr[j]);
+            if (tempAns < minCost) {
+                minCost = tempAns;
+            }
+        }
+        return dp[i][j] = minCost;
+    }
+
+    private static int mcm_memo(int[] arr, int i, int j) {
+        int n = arr.length;
+        int[][] dp = new int[n + 1][n + 1];
+        for (int[] row : dp) {
+            Arrays.fill(row, -1);
+        }
+        return helper(arr, i, j, dp);
+    }
+
     public static void main(String[] args) {
 
         int[] arr = { 40, 20, 30, 10, 30 };
         int n = arr.length;
         System.out.println("minimum cost is : " + mcm(arr, 1, n - 1));
+        System.out.println("minimum cost is (memo) : " + mcm_memo(arr, 1, n - 1));
 
     }
 }
