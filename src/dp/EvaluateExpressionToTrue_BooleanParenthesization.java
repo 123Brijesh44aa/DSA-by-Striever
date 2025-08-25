@@ -11,24 +11,24 @@ public class EvaluateExpressionToTrue_BooleanParenthesization {
      * and operators '&' (AND), '|' (OR), and '^' (XOR),
      * count the number of ways to parenthesize the expression such that it
      * evaluates to true.
-     * 
+     *
      * Input:
      * - A string S of length N, where S contains only 'T', 'F', '&', '|', and '^'.
      * - The length of S is always odd (operands and operators alternate).
-     * 
+     *
      * Output:
      * - An integer representing the number of ways to parenthesize S so that the
      * value of the expression is true.
-     * 
+     *
      * Example:
      * Input: S = "T|F&T^T"
      * Output: 2
-     * 
+     *
      * Explanation:
      * The two ways to parenthesize "T|F&T^T" to get true are:
      * 1. ((T|F)&(T^T)) => (T|F) = T, (T^T) = F, (T & F) = F
      * 2. (T|(F&T))^T => (F&T) = F, (T|F) = T, (T^T) = F
-     * 
+     *
      * So, there are 2 ways to parenthesize the expression to get true.
      */
 
@@ -76,7 +76,13 @@ public class EvaluateExpressionToTrue_BooleanParenthesization {
     }
 
     // MEMOIZATION
-    private static int helper(String exp, int i, int j, boolean isTrue, Map<String, Integer> map) {
+    private static int helper(
+        String exp,
+        int i,
+        int j,
+        boolean isTrue,
+        Map<String, Integer> map
+    ) {
         if (i > j) {
             return 0;
         }
@@ -118,7 +124,6 @@ public class EvaluateExpressionToTrue_BooleanParenthesization {
                     ans += lt * rt + lf * rf;
                 }
             }
-
         }
 
         map.put(key, ans);
@@ -141,8 +146,12 @@ public class EvaluateExpressionToTrue_BooleanParenthesization {
         int i = 0;
         int j = n - 1;
         System.out.println(
-                "number of ways to evaluate  the expression to true is : " + evaluate(expression, i, j, true));
+            "number of ways to evaluate  the expression to true is : " +
+            evaluate(expression, i, j, true)
+        );
         System.out.println(
-                "number of ways to evaluate  the expression to true(memo) is : " + evaluate_memo(expression, true));
+            "number of ways to evaluate  the expression to true(memo) is : " +
+            evaluate_memo(expression, true)
+        );
     }
 }
