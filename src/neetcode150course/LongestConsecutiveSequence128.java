@@ -38,8 +38,8 @@ public class LongestConsecutiveSequence128 {
                 while (set.contains(next)) {
                     next = next + 1;
                     length = length + 1;
-                    longest = Math.max(longest, length);
                 }
+                longest = Math.max(longest, length);
             }
         }
 
