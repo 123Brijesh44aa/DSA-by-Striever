@@ -2,7 +2,7 @@ package graphs;
 
 import java.util.*;
 
-public class Bipartite {
+public class BipartiteUsingBFS {
 
     // Bipartite graph :
     // color the graph with 2 color such that no adjacent nodes have same color.

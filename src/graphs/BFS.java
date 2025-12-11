@@ -43,7 +43,7 @@ public class BFS {
             bfs.add(node);
 
             for (Integer it : adj.get(node)) {
-                if (vis[it] == false) {
+                if (!vis[it]) {
                     vis[it] = true;
                     queue.add(it);
                 }
